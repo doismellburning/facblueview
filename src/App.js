@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+	constructor() {
+		super();
+		this.state = {
+			dump: ""
+		};;
+	}
+
   render() {
     return (
       <div className="App">
@@ -13,9 +20,19 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+		  <div>
+			<h2>In</h2>
+			<input type="text" onBlur={this.onBlur.bind(this)} />
+			<h2>Dump</h2>
+			<code>{this.state.dump}</code>
+		  </div>
       </div>
     );
   }
+
+	onBlur(event) {
+
+	}
 }
 
 export default App;
