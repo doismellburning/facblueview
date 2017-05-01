@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import pako from 'pako';
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			dump: ""
+			dump: "Empty"
 		};;
 	}
 
@@ -31,8 +32,19 @@ class App extends Component {
   }
 
 	onBlur(event) {
-
+		this.setState({dump: decodeBlueprint(event.target.value)});
 	}
+}
+
+function decodeBlueprint(text) {
+	// Blueprint string in, Either Error Blueprint out
+	
+	var version = text.substring(0, 1);
+	// TODO Ensure 0
+	
+	var encoded = text.substring(1);
+
+	return pako.inflate(atob(encoded), {to: 'string'});
 }
 
 export default App;
