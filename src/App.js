@@ -32,19 +32,21 @@ class App extends Component {
   }
 
 	onBlur(event) {
-		this.setState({dump: decodeBlueprint(event.target.value)});
+		this.setState({dump: JSON.stringify(decodeBlueprint(event.target.value))});
 	}
 }
 
 function decodeBlueprint(text) {
-	// Blueprint string in, Either Error Blueprint out
+	// Blueprint string in, Either Error JSON out
+	// (IN THEORY)
+	// In practice: string -> JSON or some kind of boom
 	
 	var version = text.substring(0, 1);
 	// TODO Ensure 0
 	
 	var encoded = text.substring(1);
 
-	return pako.inflate(atob(encoded), {to: 'string'});
+	return JSON.parse(pako.inflate(atob(encoded), {to: 'string'}));
 }
 
 export default App;
