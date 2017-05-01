@@ -23,7 +23,7 @@ class App extends Component {
         </p>
 		  <div>
 			<h2>In</h2>
-			<input type="text" onBlur={this.onBlur.bind(this)} />
+			<textarea onBlur={this.onBlur.bind(this)} />
 			<h2>Dump</h2>
 			<code>{this.state.dump}</code>
 		  </div>
